@@ -40,11 +40,11 @@ Those are already much more mathematical.
 ## A small problem of uniqueness
 When we extend the field $$\mathbb{Q}$$ with a root of $$x^2-5$$, we have a choice to make. Both roots $$\sqrt{5}$$ and $$-\sqrt{5}$$ are equally reasonable. And in fact, choosing the one automatically gives us the other.
 
-There's a very deep subtlety here: the roots of the polynomial $$x^2-5$$ embody some notion of *symmetry*. If you're interested in this symmetry, and happen to be a 19-yaer-old boy dying in the french revolution, I'd point you to the amazing world of [Galois theory](https://en.wikipedia.org/wiki/Galois_theory). For now though let's get back to linear algebra.
+There's a very deep subtlety here: the roots of the polynomial $$x^2-5$$ embody some notion of *symmetry*. If you're interested in this symmetry, and happen to be a 19-year-old boy dying in the french revolution, I'd point you to the amazing world of [Galois theory](https://en.wikipedia.org/wiki/Galois_theory). For now though let's get back to linear algebra.
 
 ## Embedding fields in matrices
 Given some field $$\mathbb{F}$$ we can build $$\mathrm{Mat}_n(\mathbb{F})$$, the set of square matrices of size $$n$$ with entries in $$\mathbb{F}$$.
-There's a natural embedding $$\mathbb{F} \hookrightarrow \mathrm{Mat}_n(\mathbb{F})$$ given by $$x \mapsto xI$$. In other words, each number in the field is sent to the diagonal matrix where all the entries on the diagonal are that number, and all other matrices are zero.
+There's a natural embedding $$\mathbb{F} \hookrightarrow \mathrm{Mat}_n(\mathbb{F})$$ given by $$x \mapsto xI$$. In other words, each number in the field is sent to the diagonal matrix where all the entries on the diagonal are that number, and all other entries are zero.
 
 Notice we can add diagonal matrices and the resulting matrix is still diagonal. Same with subtraction, and matrix multiplication. Division is a bit harder, because we need to make sure the matrix is invertible. But since it's diagonal, that becomes true as well. All in all, the embedding from $$\mathbb{F}$$ is in fact a *field homomorphism*; a function preserving the field structure. The field we're embedding into is not the set of all matrices, but only the set of those of the form $$xI$$. Are there any other subsets of matrices that also admit a field structure?
 
@@ -52,7 +52,9 @@ Notice we can add diagonal matrices and the resulting matrix is still diagonal. 
 Back to polynomials, it might be worth thinking "what do we need to put things inside polynomials?". Concretely, when we have a polynomial with coefficients in $$\mathbb{F}$$ and one variable $$x$$ (written $$p\in\mathbb{F}[x]$$), when does the expression $$p(A)$$ make sense?
 
 As we know, if $$A\in\mathbb{F}$$, that's just treating the polynomial as a regular function.
-But what about $$n\times n$$ matrices over $$\mathbb{F}$$? They can be added, subtracted, and multiplied, hence raised to a power. Matrices can also be multiplicated by a scalar. So it's not so absurd to try plugging a matrix into a polynomial.
+But what about $$n\times n$$ matrices over $$\mathbb{F}$$? They can be added, subtracted, and multiplied, hence raised to a power. Matrices can also be multiplied by a scalar. So it's not so absurd to try plugging a matrix into a polynomial.
+
+> If the polynomial contains a constant $a_0$, it will have to become $a_0I$ to be compatible with the other matrices.
 
 We are especially interested in a specific polynomial. Given a matrix $$A\in \mathrm{Mat}_n(\mathbb{F})$$, we define its *characteristic polynomial* $$\chi_A := \det(A-xI)$$. The $$x$$ there is the variable, and if you try to actually compute the determinant you will see it is indeed a polynomial in $$x$$.
 
@@ -70,9 +72,9 @@ Given a polynomial $$p$$, if you have some root $$x$$ such that $$p(x) = 0$$, yo
 
 But there's another more interesting construction to discover. Let's write our polynomial as
 
-$$p(x) = x^n + a_{n-1}x^{n-1} + \cdots + a_1x^1 + x_0$$
+$$p(x) = x^n + a_{n-1}x^{n-1} + \cdots + a_1x^1 + a_0$$
 
-Without loss of generality, the coefficient of $$x^n$$ is one (otherwise we simply divide by it). Now look at this weird matrix:
+Without loss of generality, the coefficient of $$x^n$$ is $1$ (otherwise we simply divide by it). Now look at this weird matrix:
 
 $$
 A_p := \begin{pmatrix}
@@ -113,7 +115,7 @@ So, this roughly explains it. The $$2\times2$$ matrices of the form we explored 
 One of the important connections to notice is that we made a choice here too! we could have used the transposed version $$\begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}$$, and still get a matrix that zeros $$p$$. This is equivalent to the choice of $$i$$ vs $$-i$$ from the beginning.
 
 ## More than the complex numbers
-Can we now pick another polynomial and repeat this whole process to get a yet larger field than $$\mathbb{C}$$?
+Can we now pick another polynomial and repeat this whole process to get a field yet larger than $$\mathbb{C}$$?
 
 Sadly, no. But also happily, no! Any polynomial over $$\mathbb{C}$$ already has all of its roots contained within $$\mathbb{C}$$, so it doesn't matter which polynomial we try adding we won't get anything new.
 
@@ -134,4 +136,4 @@ In this context, operations like the complex conjugate (transpose in the matrix 
 ## The end
 To conclude, we looked at this mathematical structure called "complex numbers" and tried to represent it as a set of special matrices. Along the way we met polynomials as well. This journey exposed unexpected connections between the worlds of field theory, linear algebra, and polynomials.
 
-The act of reducing problems to, matrices or polynomials is a useful repeating theme in mathematics. In truth, those are the only simple things that exist. Even in much more advanced topics, like calculus, we spend most of the time estimating non-linear functions with linear ones, so we can use the tools of linear algebra to study them. Everything else is too complicated for us humans to work with! So maybe next time you encounter an alien concept, try thinking if it behaves like a matrix ;)
+The act of reducing problems to matrices or polynomials is a useful repeating theme in mathematics. In truth, those are the only simple things that exist. Even in much more advanced topics, like calculus, we spend most of the time estimating non-linear functions with linear ones, so we can use the tools of linear algebra to study them. Everything else is too complicated for us humans to work with! So maybe next time you encounter an alien concept, try thinking if it behaves like a matrix ;)
