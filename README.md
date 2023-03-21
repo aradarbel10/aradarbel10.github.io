@@ -1,4 +1,4 @@
-# Arad's Github Pages
+# Arad's Place!
 
 ## Blog posts
-- [Complex numbers are matrices](/complex-are-matrices.md)
+- [Complex numbers are matrices](/blog/complex-are-matrices.md)
