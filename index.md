@@ -9,5 +9,7 @@ title: ""
 ## My blog posts
 - [Complex Numbers Are Matrices](blog/complex-are-matrices.md)
 
-## Other things
+## My projects
 - The [Styff](https://github.com/aradarbel10/Styff) programming language online playground. [Try it!](https://aradarbel10.github.io/Styff/) **(WARNING: under development)**
+- [MyOwnTT](https://github.com/aradarbel10/MyOwnTT) - an implementation of dependent type theory with dependent records.
+- An [example implementation](https://gist.github.com/aradarbel10/2e4cc8671ae7d366a1edf2da038d1403) for type checking system F using pure bidi.
