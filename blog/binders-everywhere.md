@@ -78,7 +78,7 @@ type Bar a b = Either (Int, a) (String, b)
 ```
 and in Styff could be made even more explicit,
 ```ocaml
-type Bar = λ{a} {b}. Either (int × a) (string × b)
+type Bar = λa b. Either (int × a) (string × b)
 ```
 
 In the example, `Foo` expects to receive two type parameters, and as a result return a new type. This is unlike the polymorphic $id$ function which takes a type and returns a term.
