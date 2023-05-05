@@ -28,15 +28,15 @@ let foo x y z = e
 | Agda | `λx → e` | `f a` | `τ₁ → τ₂` |
 
 ## Capital lambdas & forall: from types to terms
-But what if we want our language to support *parametric polymorphism*? This is when a term can depend on a type. The running example is the identity function: which takes on *type parameter* and one *term parameter* of the type that was given to it, then returns the same term that it was given. We can write this using our brand new capital lambda:
+But what if we want our language to support *parametric polymorphism*? This is when a term can depend on a type. The running example is the identity function: which takes one *type parameter* and one *term parameter* of the type that was given to it, then returns the same term that it was given. We can write this using our brand new capital lambda:
 $$id \;\;:=\;\;\Lambda \alpha.\lambda (x: \tau). x$$
 Notice how the type of the parameter has to be given before the parameter itself.
 
-When we invoke this function then, we must *instantiate* the type parameter. The notation for this is a bit messy, but in type theory you'd often encounter the square-brackets one: $id\;[\mathtt{int}]\; 5$. Advise the table below for more ways to write it.
+When we invoke this function then, we must *instantiate* the type parameter. The notation for this is a bit messy, but in type theory you'd often encounter the square-brackets one: $id\;[\mathtt{int}]\; 5$. In this case, the type is given on the term level, so instantiating the term $id\;[\sigma]$ will actually perform a substitution in the type of that term, $(\alpha\to\alpha)[\alpha:=\mathtt{int}] \longmapsto (\mathtt{int}\to\mathtt{int})$.
 
-The type of $\Lambda \alpha. e$ is written as $\forall\alpha. \tau$, where $\tau$ is the type of $e$ (which is allowed to use $\alpha$!). The way to think about $\Lambda$ is as a function that takes in a type and returns a term. $\forall$ is the type of such function, but unlike a regular function type ($\to$) we have to specify the name of the parameter *inside the type*, so it can be referred to in the rest of the type. This is conveyed perfectly in Styff's syntax, and even better in Agda.
+The type of $\Lambda \alpha. e$ is written as $\forall\alpha. \tau$, where $\tau$ is the type of $e$ (which is allowed to use $\alpha$!). The way to think about $\Lambda$ is as a function that takes in a type and returns a term. $\forall$ is the type of such function, but unlike a regular function type ($\to$) we have to specify the name of the parameter *inside the type*, so it can be referred to in the rest of the type. This is conveyed perfectly in Styff's syntax, and even better in Agda's type system.
 
-In languages based on HM, the syntax situation is very weird. Haskell and OCaml allow you to write $\forall$ explicitly, but they can insert it for you if you needed. There is no way at all to explicitly specify a $\Lambda$.[^1]
+In languages based on HM, the syntax situation is very weird. Haskell and OCaml allow you to write $\forall$ explicitly, but they'd insert it for implicitly you if you needed. There is no way at all to explicitly specify a $\Lambda$.[^1]
 
 Similarly, those languages usually don't have the same syntactic sugar in `let`-bindings. This is actually one aspect where mainstream languages do a better job, here's how we can write the identity function in C#:
 ```cs
@@ -45,6 +45,13 @@ public static T id<T>(T x) {
 }
 ```
 The `<T>` there stands for the $\Lambda$ in our syntax. C#'s syntax is less successful by being a bit confusable with polymorphic types, which we look at next.
+
+Here is how it looks in Styff
+```ocaml
+let id = λ{T} (x : T). x
+(* equivalently *)
+let id {T} (x : T) = x
+```
 
 | language 	| abstraction	| instantiation | formation |
 |:----------:|:--------:|:------:|:------:|
@@ -55,7 +62,7 @@ The `<T>` there stands for the $\Lambda$ in our syntax. C#'s syntax is less succ
 | Agda | `λα → e` | `f σ` | `(α : Set) → τ` |
 
 ## Type-level lambdas: from types to types
-In the previous section we saw terms (functions) that depend on types or, informally, "functions from types to terms". Next we look at "functions from types to types". These rarely have explicit syntax in programming languages, but we can still write them explicitly by defining a type with parameters. Here's a random Haskell example:
+In the previous section we saw terms (generic functions) that depend on types or, informally, "functions from types to terms". Next we look at "functions from types to types". These rarely have explicit syntax in programming languages, but we can still write them explicitly by defining a type with parameters. Here's a random Haskell example:
 ```hs
 type Foo a b = Either String (a, b)
 ```
@@ -69,10 +76,14 @@ which is roughly equivalent to
 ```hs
 type Bar a b = Either (Int, a) (String, b)
 ```
+and in Styff could be made even more explicit,
+```ocaml
+type Bar = λ{a} {b}. Either (int × a) (string × b)
+```
 
-In the example, `Foo` expects to receive two type parameters, and as a result return a new type. This is unlike the $id$ function which takes a type and returns a term.
+In the example, `Foo` expects to receive two type parameters, and as a result return a new type. This is unlike the polymorphic $id$ function which takes a type and returns a term.
 
-The example contains in fact another "function from types to types", the `Either`, which already demonstrates type application.
+The example contains in fact another "function from types to types", the `Either`, which already demonstrates type application. It looks just like function application of terms.
 
 Due to technical reasons, Haskell and OCaml do not allow you to write explicit type-level lambdas, but if they did, they'd probably look just like regular lambdas $\lambda\alpha.\tau$. Such function is already on the type level so it won't have a type, but a *kind*, `* -> *`.[^3] In those cases, we can annotate type parameters with their kinds, as in `type (a :: Type) (b :: Type) = ...` for Haskell. Last section's $\forall$ can also accept types of higher kinds, this would look like $\forall(\alpha:k).\tau$.
 
@@ -84,7 +95,7 @@ As usual, in Agda all of these are nothing but regular functions, that happen to
 |:----------:|:--------:|:------:|:------:|
 | type theory | $\lambda \alpha. \tau$ | $f\;s$ | $\ast\to\ast$ |
 | Haskell	| N/A	| `f s` | `* -> *` |
-| OCaml | N/A | `t s`[^4] | N/A |
+| OCaml | N/A | `s f`[^4] | N/A |
 | Styff | `λa. t` | `f s` | `Type → Type` |
 | Agda | `λα → τ` | `f σ` | `(α : Set) → τ` |
 
