@@ -7,6 +7,7 @@ title: ""
 ---
 
 ## My blog posts
+- [Binders Here, Binders There, Binders Everywhere](blog/binders-everywhere.md) disambiguating binders in system F and beyond
 - [Complex Numbers Are Matrices](blog/complex-are-matrices.md)
 
 ## My projects
