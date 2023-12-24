@@ -5,6 +5,8 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <h2 class="post-subtitle p-name" itemprop="name headline">{{ page.subtitle | escape }}</h2>
+
     <p class="post-meta">
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
@@ -15,18 +17,30 @@ layout: default
       {%- endif -%}</p>
     
     
+    <!-- specify the path to a third-party extension -->
+    <script type="text/x-mathjax-config">
+      MathJax.Ajax.config.path["preamble"] = "https://github.com/mathjax/MathJax-third-party-extensions/blob/c4878c919af943e39adab5f8460576baa5ea73ad/legacy/preamble";
+    </script>
+
+    <!-- configure MathJax before loading it -->
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
+        extensions: [
+          "tex2jax.js",
+        ],
         tex2jax: {
           inlineMath: [ ['$', '$'], ["\\(", "\\)"] ],
-          displayedMath: [ ['$$', '$$'] ],
+          displayedMath: [ ['$$', '$$'], ["\[", "\]"] ],
           processEnvironments: false,
           processEscapes: true,
+        },
+        TeX: {
+          extensions: ["AMSmath.js","AMSsymbols.js","extpfeil.js","cancel.js","color.js","noErrors.js","noUndefined.js"],
         }
       });
     </script>
     <script type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
     
   </header>
@@ -34,6 +48,8 @@ layout: default
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  <h2 style="text-align: center; font-style: italic">The End.</h2>
 
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
