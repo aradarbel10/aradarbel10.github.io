@@ -29,7 +29,9 @@ let foo x y z = e
 
 ## Capital lambdas & forall: from types to terms
 But what if we want our language to support *parametric polymorphism*? This is when a term can depend on a type. The running example is the identity function: which takes one *type parameter* and one *term parameter* of the type that was given to it, then returns the same term that it was given. We can write this using our brand new capital lambda:
-$$id \;\;:=\;\;\Lambda \alpha.\lambda (x: \tau). x$$
+
+$$id \;\;:=\;\;\Lambda \alpha.\lambda (x: \alpha). x$$
+
 Notice how the type of the parameter has to be given before the parameter itself.
 
 When we invoke this function then, we must *instantiate* the type parameter. The notation for this is a bit messy, but in type theory you'd often encounter the square-brackets one: $id\;[\mathtt{int}]\; 5$. In this case, the type is given on the term level, so instantiating the term $id\;[\sigma]$ will actually perform a substitution in the type of that term, $(\alpha\to\alpha)[\alpha:=\mathtt{int}] \longmapsto (\mathtt{int}\to\mathtt{int})$.
