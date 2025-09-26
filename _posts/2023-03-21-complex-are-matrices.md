@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Complex Numbers Are Matrices
+date: 2023-03-21
 ---
 
 Here are some cool things you can do with complex numbers. Say you have $z=a+ib$ and $w=c+id$. Then:

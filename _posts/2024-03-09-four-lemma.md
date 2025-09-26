@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Four proofs of the four lemma
+date: 2024-03-09
 ---
 
 <div style="display:none">

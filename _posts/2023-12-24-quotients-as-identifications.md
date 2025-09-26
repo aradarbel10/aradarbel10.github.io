@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Quotients as identifications
+date: 2023-12-24
 ---
 
 <div style="display:none">
