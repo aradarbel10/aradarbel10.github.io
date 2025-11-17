@@ -12,17 +12,17 @@ Unfortunately the reality is not so friendly to us. The spectra $Y$ used in the 
 
 **Remark:** As a rule of thumb, construction of Smith-Toda complexes gets harder for the lower primes. For instance, the next self-map at $p=2$ is $v_2^{32}$. Similarly at the prime $p=3$, at height $1$ there actually does exist a $v_1$-self map, but at height $2$ the best we can do is $v_2^9$. Not much is known beyond those, and proving existence/non-existence of Smith-Toda complexes is one of the greatest mysteries of the field.
 
-Nowadays, Greek letter elements are studied primarily via the classical Adams spectral sequence, or the Adams-Novikov spectral sequence, but when Adams originally constructed his $\alpha$-family this fancy language was not yet available. So if you try reading Adams paper you will not find any mention of $v_n$-maps or anything like that. My goal here is to explicitly connect Adams's construction to the modern perspective.
+Nowadays, Greek letter elements are studied primarily via the classical Adams spectral sequence, or the Adams-Novikov spectral sequence, but when Adams originally constructed his $\alpha$-family this fancy language was not yet available. So if you try reading Adams's paper you will not find any mention of $v_n$-maps or anything like that. My goal here is to explicitly connect his construction to the modern perspective.
 
 
 ### Strategy
-In the above, I started from saying how we want periodic families in the stable stem, and to get those we look for self-maps on some auxilary complex. I remind: we seek a map $G : \Sigma^k Y \to Y$ such that $A,A^2,A^3,\cdots$ are all nontrivial, and once we have that we can define the elements $g_t \in \pi_{kt}\mathbb{S}$ by
+In the above, I started from saying how we want periodic families in the stable stem, and to get those we look for self-maps on some auxilary complex. I remind: we seek a map $A : \Sigma^k Y \to Y$ such that $A,A^2,A^3,\cdots$ are all nontrivial, and once we have that we can define the elements $\alpha_t \in \pi_{kt}\mathbb{S}$ by
 
 $$\Sigma^{kt}\mathbb{S} \xrightarrow{i} \Sigma^{kt}Y \xrightarrow{A^r} Y \xrightarrow{j} \mathbb{S}$$
 
 where $i,j$ are some other maps. As mentioned earlier, the case I have in mind will use the Moore spectrum $Y = \mathbb{S}/p$, and the maps $i : \mathbb{S} \to \mathbb{S}/p$ and $j : \mathbb{S}/p \to \mathbb{S}^1$ will be respectively the bottom-cell inclusion and the top-cell projection.
 
-**Remark:** At the prime $2$, most of Adams's attention is on the case where $i$ is, still, the bottom-cell inclusion, but where $j$ is a map $\overline\eta$, a certain lift of the Hopf fibration. The resulting families of elements are his famous $\mu_r$-families (for $r\equiv 1,2\mod 8$).
+**Remark:** At the prime $2$, most of Adams's attention is on the case where $i$ is, still, the bottom-cell inclusion, but where $j$ is a map $\overline\eta$, a certain lift of the Hopf fibration. The resulting families of elements are his famous $\mu_r$-families (for $r\equiv 1,2\mod 8$)[^3].
 
 But notice that the existence of a self-map on $\mathbb{S}/p$ is equivalent to that of a self-map on $\mathbb{S}$ whose order in the homotopy group is $p$. So to construct the family $\alpha_t$, Adams started from just finding an appropriate $\alpha_1$, then recovering $A$ from that, and only then extending $\alpha_t$ to all $t\geq 1$.
 
@@ -47,11 +47,11 @@ Hence we seek $\alpha$ with $e$-invariant equal to $-\frac{1}{m}$. All that rema
 **Remark:** The lemma only works for $\alpha$ whose degree $k$ is odd, hence $A$'s degree is even. This does not restrict us, as $v_n$-self maps are necessarily of even degree.
 
 ### Specifics at odd primes
-Adams proves (Lemma 12.4) that when $p$ is an odd prime, and $m$ is a power of $p$, then the desired element $\alpha$ exists in $\pi_{(p-1)m}\mathbb{S}$. For simplicity I focus on the case $m=p$.
+Adams proves (Lemma 12.4) that when $p$ is an odd prime, and $m$ is a power of $p$, then the desired element $\alpha$ exists. For simplicity I focus on the case $m=p$.
 
-Recall Serre's torsion result: for every prime $p$, the groups $\pi_*\mathbb{S}$ do not contain any $p$-torsion in degree $\ast < 2p-3$. The first $p$-primary part occurs in degree $2p-3$, and it's precisely a cyclic summand of the form $\mathbb{Z}/p$. One can show[^2] that any element here satisfies the criteria.
+Recall Serre's torsion result: for each prime $p$, the groups $\pi_*\mathbb{S}$ do not contain any $p$-torsion in degree $\ast < 2p-3$. The first $p$-primary part occurs in degree $2p-3$, and it's precisely a cyclic summand of the form $\mathbb{Z}/p$. One can show[^2] that any nonzero element here satisfies the criteria.
 
-Therefore, at $p=1$, we are able to obtain a $v_1$-self map on $\mathbb{S}/p$ of degree $2p-3+1 = 2(p-1)$ and hence $\alpha_t \in \pi_{2(pt-1)}\mathbb{S}$. These are all nontrivial since they have nonzero $e$-invariant.
+Therefore, at odd $p$, we are able to obtain a $v_1$-self map on $\mathbb{S}/p$ of degree $2p-3+1 = 2(p-1)$ and hence $\alpha_t \in \pi_{2t(p-1)-1}\mathbb{S}$. These are all nontrivial since they have nonzero $e$-invariant.
 
 ### Specifics at $p=2$
 Now for the more interesting case. This will rely on the structure of the $J$-homomorphism as studied by Adams. Recall that this is the map $J : \pi\_\*{SO} \to \pi\_\*\mathbb{S}$ defined by sending any orthogonal automorphism of $\mathbb{R}^m$ to the induced self-equivalence of $S^m = \mathbb{R}^m\cup\infty$, and then stabilizing. Upon this stabilization, Bott periodicity says $\pi_{4k-1}{SO} \cong \mathbb{Z}$ for all $k$. This will map onto some cyclic subgroup of $\pi_{4k-1}\mathbb{S}$, and Adams incredibly determined the order of this subgroup:
@@ -66,7 +66,7 @@ The last criterion we have to verify is the Toda bracket. This follows from one 
 
 $$\{2,\alpha,2\} = \alpha\eta = \frac{\alpha}{2}\cdot 2\eta = 0$$
 
-as desired. Note that $\sigma$ is in degree $7$, so the resulting self map of $\mathbb{S}/2$ will have be in degree $8$. Hence we only get from here a $v_1^4$-self map at $p=2$.
+as desired. Note that $\sigma$ is in degree $7$, so the resulting self map of $\mathbb{S}/2$ will be in degree $8$. Hence we only get from here a $v_1^4$-self map at $p=2$.
 
 ### Minimality
 Does $\mathbb{S}/2$ admit a $v_1$ map of lower periodicity than $4$? If it did, then by the previous argument, it should come from some element of $\pi_*\mathbb{S}$ with $e$-invariant equal to $\frac{1}{2}$. The computation of the stable stem in degrees up to $7$ is classical, and can be found e.g. in Toda's book. Here are all the elements of order $2$:
@@ -91,11 +91,12 @@ $$\{2,\eta,2\} = \eta^2$$
 
 This time we cannot divide $\eta$ by $2$ so the result is nonzero.
 
-Lastly in degree $3$, the $e$-invariant defined with respect to *real* $KO$-theory defines an isomorphism $\pi_3\mathbb{S} \to \mathbb{Z}/24$ similarly to what happened in degree $7$. Consequently the real $e$-invariant of $12\nu$ is indeed $\frac{1}{2}$. However we are only considering $e$-invariants against the *complex* $KU$-theory. It turns out that the complex version equals double the real version, so the actual (complex) $e$-invariant of $12\nu$ is $1\cong 0\mod\mathbb{Z}$.
+Lastly in degree $3$, the $e$-invariant defined with respect to *real* $KO$-theory defines an isomorphism $\pi_3\mathbb{S} \to \mathbb{Z}/24$ similarly to what happened in degree $7$. Consequently the real $e$-invariant of $12\nu$ is indeed $\frac{1}{2}$. However we are only considering $e$-invariants against the *complex* $KU$-theory. It turns out that the complex version equals double the real version, so the actual (complex) $e$-invariant of $12\nu$ is $1\equiv 0\mod\mathbb{Z}$.
 
-This completes the proof of minimality for the periodicity of $\nu_1^4$ at $p=2$.
+This completes the proof of minimality for the periodicity of $v_1^4$ at $p=2$.
 
 
 #### Footnotes
 [^1]: All $d$- and $e$-invariants in this post are with respect to the spectrum $KU$.
 [^2]: I think this should be pretty easy with the EHP sequence, though I haven't checked.
+[^3]: Adams described his $\mu$-family as something "every homotopy theorist know and love, but need not concern anyone else."
