@@ -22,6 +22,3 @@ The cat asked, “Where do you want to go?”
 - [Part 1: The relative trace map]({% post_url /trace-of-KZ/2026-01-30-part1 %})
 - Part 2: Linearization of K-theory (coming soon...)
 - Part 3: Algberaic A-theory of spaces (coming soon...)
-
-
-One of the very first steps in the Ausoni-Rognes computation of "algebraic $K$-theory of topological $K$-theory" 
